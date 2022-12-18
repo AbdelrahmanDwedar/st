@@ -278,9 +278,7 @@ static int focused = 0;
 static int oldbutton = 3; /* button event on startup: 3 = release */
 static uint buttons; /* bit field of pressed buttons */
 
-void
-clipcopy(const Arg *dummy)
-{
+void clipcopy(const Arg *dummy) {
 	Atom clipboard;
 
 	free(xsel.clipboard);
@@ -293,9 +291,7 @@ clipcopy(const Arg *dummy)
 	}
 }
 
-void
-clippaste(const Arg *dummy)
-{
+void clippaste(const Arg *dummy) {
 	Atom clipboard;
 
 	clipboard = XInternAtom(xw.dpy, "CLIPBOARD", 0);
@@ -303,22 +299,16 @@ clippaste(const Arg *dummy)
 			xw.win, CurrentTime);
 }
 
-void
-selpaste(const Arg *dummy)
-{
+void selpaste(const Arg *dummy) {
 	XConvertSelection(xw.dpy, XA_PRIMARY, xsel.xtarget, XA_PRIMARY,
 			xw.win, CurrentTime);
 }
 
-void
-numlock(const Arg *dummy)
-{
+void numlock(const Arg *dummy) {
 	win.mode ^= MODE_NUMLOCK;
 }
 
-void
-changealpha(const Arg *arg)
-{
+void changealpha(const Arg *arg) {
     if((alpha > 0 && arg->f < 0) || (alpha < 1 && arg->f > 0))
         alpha += arg->f;
     alpha = clamp(alpha, 0.0, 1.0);
@@ -328,18 +318,14 @@ changealpha(const Arg *arg)
     redraw();
 }
 
-void
-zoom(const Arg *arg)
-{
+void zoom(const Arg *arg) {
 	Arg larg;
 
 	larg.f = usedfontsize + arg->f;
 	zoomabs(&larg);
 }
 
-void
-zoomabs(const Arg *arg)
-{
+void zoomabs(const Arg *arg) {
 	xunloadfonts();
 	xloadfonts(usedfont, arg->f);
 	xloadsparefonts();
@@ -348,9 +334,7 @@ zoomabs(const Arg *arg)
 	xhints();
 }
 
-void
-zoomreset(const Arg *arg)
-{
+void zoomreset(const Arg *arg) {
 	Arg larg;
 
 	if (defaultfontsize > 0) {
@@ -359,30 +343,23 @@ zoomreset(const Arg *arg)
 	}
 }
 
-void
-ttysend(const Arg *arg)
-{
+void ttysend(const Arg *arg) {
 	ttywrite(arg->s, strlen(arg->s), 1);
 }
 
-int
-evcol(XEvent *e)
-{
+int evcol(XEvent *e) {
 	int x = e->xbutton.x - borderpx;
 	LIMIT(x, 0, win.tw - 1);
 	return x / win.cw;
 }
 
-int
-evrow(XEvent *e)
-{
+int evrow(XEvent *e) {
 	int y = e->xbutton.y - borderpx;
 	LIMIT(y, 0, win.th - 1);
 	return y / win.ch;
 }
 
-float
-clamp(float value, float lower, float upper) {
+float clamp(float value, float lower, float upper) {
     if(value < lower)
         return lower;
     if(value > upper)
@@ -390,9 +367,7 @@ clamp(float value, float lower, float upper) {
     return value;
 }
 
-void
-mousesel(XEvent *e, int done)
-{
+void mousesel(XEvent *e, int done) {
 	int type, seltype = SEL_REGULAR;
 	uint state = e->xbutton.state & ~(Button1Mask | forcemousemod);
 
@@ -407,9 +382,7 @@ mousesel(XEvent *e, int done)
 		setsel(getsel(), e->xbutton.time);
 }
 
-void
-mousereport(XEvent *e)
-{
+void mousereport(XEvent *e) {
 	int len, x = evcol(e), y = evrow(e),
 	    button = e->xbutton.button, state = e->xbutton.state;
 	char buf[40];
@@ -470,9 +443,7 @@ mousereport(XEvent *e)
 	ttywrite(buf, len, 0);
 }
 
-uint
-buttonmask(uint button)
-{
+uint buttonmask(uint button) {
 	return button == Button1 ? Button1Mask
 	     : button == Button2 ? Button2Mask
 	     : button == Button3 ? Button3Mask
@@ -481,9 +452,7 @@ buttonmask(uint button)
 	     : 0;
 }
 
-int
-mouseaction(XEvent *e, uint release)
-{
+int mouseaction(XEvent *e, uint release) {
 	MouseShortcut *ms;
 
 	/* ignore Button<N>mask for Button<N> - it's set on release */
@@ -502,9 +471,7 @@ mouseaction(XEvent *e, uint release)
 	return 0;
 }
 
-void
-bpress(XEvent *e)
-{
+void bpress(XEvent *e) {
 	int btn = e->xbutton.button;
 	struct timespec now;
 	int snap;
