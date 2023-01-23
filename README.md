@@ -1,65 +1,67 @@
-# Luke's build of st - the simple (suckless) terminal
+# Personal Build of the Suckless Terminal
 
-The [suckless terminal (st)](https://st.suckless.org/) with some additional
-features that make it literally the best terminal emulator ever:
+My personal build of [Suckless Terminal (ST)](https://st.suckless.org/), refactored by [AbdelrahmanDwedar](https://github.com/AbdelrhamnaDwedar) to be more clean and appealing for the normal user to understand and enhance upon.
+
+It's consumized for my use case, and as I'm a lover of clean code and well maintained code, I'm refactoring this project to be with better code.
+
+This code will hopefully try to be as clean as possible and any help in it is welcomed.
+
+---
 
 ## Unique features (using dmenu)
 
-+ **follow urls** by pressing `alt-l`
-+ **copy urls** in the same way with `alt-y`
-+ **copy the output of commands** with `alt-o`
+- **follow urls** by pressing `alt-l`
+- **copy urls** in the same way with `alt-y`
+- **copy the output of commands** with `alt-o`
+
+---
 
 ## Bindings for
 
-+ **scrollback** with `alt-↑/↓` or `alt-pageup/down` or `shift` while scrolling the
-  mouse.
-+ OR **vim-bindings**: scroll up/down in history with `alt-k` and `alt-j`.
-  Faster with `alt-u`/`alt-d`.
-+ **zoom/change font size**: same bindings as above, but holding down shift as
-  well. `alt-home` returns to default
-+ **copy text** with `alt-c`, **paste** is `alt-v` or `shift-insert`
+- **scrollback** with `alt-↑/↓` or `alt-pageup/down` or `shift` while scrolling the mouse.
+- OR **vim-bindings**: scroll up/down in history with `alt-k` and `alt-j`.  Faster with `alt-u`/`alt-d`.
+- **zoom/change font size**: same bindings as above, but holding down shift as well. `alt-home` returns to default
+- **copy text** with `alt-c`, **paste** is `alt-v` or `shift-insert`
+
+---
 
 ## Pretty stuff
 
-+ Compatibility with `Xresources` and `pywal` for dynamic colors.
-+ Default [gruvbox](https://github.com/morhetz/gruvbox) colors otherwise.
-+ Transparency/alpha, which is also adjustable from your `Xresources`.
-+ Default font is system "mono" at 14pt, meaning the font will match your
-  system font.
+- Compatibility with `Xresources` and `pywal` for dynamic colors.
+- Default [gruvbox](https://github.com/morhetz/gruvbox) colors otherwise.
+- Transparency/alpha, which is also adjustable from your `Xresources`.
+- Default font is system "mono" at 14pt, meaning the font will match your system font.
+
+---
 
 ## Other st patches
 
-+ Boxdraw
-+ Ligatures
-+ font2
-+ updated to latest version 0.8.5
+- Boxdraw
+- Ligatures
+- font2
+- updated to latest version 0.8.5
 
-## Installation for newbs
+---
 
-You should have xlib header files and libharfbuzz build files installed.
+## Installation
 
-```
-git clone https://github.com/LukeSmithxyz/st
+You should have `xlib` header files and `libharfbuzz` build files installed.
+
+```bash
+git clone https://github.com/AbdelrahmanDwedar/st
 cd st
 sudo make install
 ```
 
-Obviously, `make` is required to build. `fontconfig` is required for the
-default build, since it asks `fontconfig` for your system monospace font. It
-might be obvious, but `libX11` and `libXft` are required as well. Chances are,
-you have all of this installed already.
+Obviously, `make` is required to build. `fontconfig` is required for the default build, since it asks `fontconfig` for your system monospace font. It might be obvious, but `libX11` and `libXft` are required as well. Chances are, you have all of this installed already.
 
-On OpenBSD, be sure to edit `config.mk` first and remove `-lrt` from the
-`$LIBS` before compiling.
+On OpenBSD, be sure to edit `config.mk` first and remove `-lrt` from the `$LIBS` before compiling.
 
-Be sure to have a composite manager (`xcompmgr`, `picom`, etc.) running if you
-want transparency.
+Be sure to have a composite manager (`xcompmgr`, `picom`, etc.) running if you want transparency.
 
 ## How to configure dynamically with Xresources
 
-For many key variables, this build of `st` will look for X settings set in
-either `~/.Xdefaults` or `~/.Xresources`. You must run `xrdb` on one of these
-files to load the settings.
+For many key variables, this build of `st` will look for X settings set in either `~/.Xdefaults` or `~/.Xresources`. You must run `xrdb` on one of these files to load the settings.
 
 For example, you can define your desired fonts, transparency or colors:
 
@@ -83,7 +85,6 @@ To be clear about the color settings:
 
 Note that when you run `wal`, it will negate the transparency of existing windows, but new windows will continue with the previously defined transparency.
 
-## Contact
+## Credits
 
-- Luke Smith <luke@lukesmith.xyz>
-- [https://lukesmith.xyz](https://lukesmith.xyz)
+Cloned from [Luke Smith's st bild](https://github.com/LukeSmithxyz/st), then refactored by [Abdelrahman Dwedar](https://github.com/AbdelrahmanDwedar)
