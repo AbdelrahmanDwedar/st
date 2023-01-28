@@ -1267,6 +1267,8 @@ void tdeletechar(int n) {
 }
 
 void tinsertblank(int n) {LIMIT(n, 0, term.col - term.c.x);
+	int dst, src, size;
+	Line line;
 
 	dst = term.c.x + n;
 	src = term.c.x;
