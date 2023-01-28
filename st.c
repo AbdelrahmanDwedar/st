@@ -1453,6 +1453,7 @@ void tsetscroll(int t, int b) {
 	term.bot = b;
 }
 
+// TODO: make the switch statment cleaner
 void tsetmode(int priv, int set, const int *args, int narg) {
 	int alt; const int *lim;
 
