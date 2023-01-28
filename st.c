@@ -1266,9 +1266,11 @@ void tdeletechar(int n) {
 	tclearregion(term.col-n, term.c.y, term.col-1, term.c.y);
 }
 
-void tinsertblank(int n) {LIMIT(n, 0, term.col - term.c.x);
+void tinsertblank(int n) {
 	int dst, src, size;
 	Line line;
+
+	LIMIT(n, 0, term.col - term.c.x);
 
 	dst = term.c.x + n;
 	src = term.c.x;
