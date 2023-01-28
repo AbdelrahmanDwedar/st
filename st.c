@@ -1281,16 +1281,12 @@ void tinsertblank(int n) {
 	tclearregion(src, term.c.y, dst - 1, term.c.y);
 }
 
-void
-tinsertblankline(int n)
-{
+void tinsertblankline(int n) {
 	if (BETWEEN(term.c.y, term.top, term.bot))
 		tscrolldown(term.c.y, n, 0);
 }
 
-void
-tdeleteline(int n)
-{
+void tdeleteline(int n) {
 	if (BETWEEN(term.c.y, term.top, term.bot))
 		tscrollup(term.c.y, n, 0);
 }
@@ -1457,9 +1453,7 @@ void tsetscroll(int t, int b) {
 	term.bot = b;
 }
 
-void
-tsetmode(int priv, int set, const int *args, int narg)
-{
+void tsetmode(int priv, int set, const int *args, int narg) {
 	int alt; const int *lim;
 
 	for (lim = args + narg; args < lim; ++args) {
